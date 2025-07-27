@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free SAT Study Guide - Ace Your Test</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 60px 20px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            margin-bottom: 40px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            color: white;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .email-form {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            max-width: 500px;
+            margin: 0 auto;
+            transform: translateY(0);
+            transition: transform 0.3s ease;
+        }
+
+        .email-form:hover {
+            transform: translateY(-5px);
+        }
+
+        .email-form h2 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #555;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e1e1e1;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            color: white;
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .study-guide {
+            display: none;
+            background: white;
+            margin-top: 40px;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .study-guide h2 {
+            color: #333;
+            margin-bottom: 30px;
+            font-size: 2.5rem;
+            text-align: center;
+        }
+
+        .guide-actions {
+            text-align: center;
+            margin-bottom: 40px;
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .action-btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .download-btn {
+            background: #28a745;
+            color: white;
+        }
+
+        .view-btn {
+            background: #007bff;
+            color: white;
+        }
+
+        .action-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .guide-content {
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        .guide-section {
+            margin-bottom: 40px;
+            padding: 30px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border-left: 5px solid #667eea;
+        }
+
+        .guide-section h3 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+
+        .guide-section h4 {
+            color: #555;
+            margin: 20px 0 10px 0;
+            font-size: 1.2rem;
+        }
+
+        .tip-box {
+            background: #e3f2fd;
+            border: 1px solid #2196f3;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .tip-box h4 {
+            color: #1976d2;
+            margin-bottom: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .email-form {
+                margin: 0 20px;
+                padding: 30px 20px;
+            }
+            
+            .guide-actions {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="hero">
+            <h1>🎓 Free SAT Study Guide</h1>
+            <p>Get instant access to our comprehensive SAT study guide with proven strategies, practice questions, and expert tips to boost your score!</p>
+        </div>
+
+        <div id="emailSection">
+            <form class="email-form" id="emailForm">
+                <h2>Get Your Free Study Guide</h2>
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" required placeholder="Enter your email address">
+                </div>
+
+                <button type="submit" class="submit-btn">Get My Free Study Guide 📚</button>
+            </form>
+
+            <div class="features">
+                <div class="feature-card">
+                    <div class="feature-icon">📖</div>
+                    <h3>Comprehensive Content</h3>
+                    <p>Complete coverage of Math, Reading, Writing & Language sections with detailed explanations and examples.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Proven Strategies</h3>
+                    <p>Time-tested techniques and shortcuts used by top scorers to maximize your performance on test day.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⏱️</div>
+                    <h3>Time Management</h3>
+                    <p>Learn how to pace yourself effectively and manage your time across all sections for optimal results.</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="studyGuide" class="study-guide">
+            <h2>🎓 Complete SAT Study Guide</h2>
+            
+            <div class="guide-actions">
+                <a href="https://docs.google.com/document/d/YOUR_GOOGLE_DOC_ID/edit?usp=sharing" target="_blank" class="action-btn download-btn">📄 Open Google Doc</a>
+                <button class="action-btn view-btn" onclick="toggleGuideView()">👁️ View Online</button>
+            </div>
+
+            <div id="guideContent" class="guide-content" style="display: none;">
+                <div class="guide-section">
+                    <h3>📋 SAT Overview & Test Structure</h3>
+                    <p>The SAT is a standardized test widely used for college admissions. The current format includes:</p>
+                    <h4>Test Sections:</h4>
+                    <p><strong>Reading (65 minutes):</strong> 52 questions testing reading comprehension across literature, history, social studies, and science passages.</p>
+                    <p><strong>Writing & Language (35 minutes):</strong> 44 questions focusing on grammar, usage, and rhetoric in context.</p>
+                    <p><strong>Math (80 minutes total):</strong> 58 questions split between calculator and no-calculator sections, covering algebra, geometry, and data analysis.</p>
+                    
+                    <div class="tip-box">
+                        <h4>💡 Pro Tip</h4>
+                        <p>Familiarize yourself with the test format before test day. Knowing what to expect reduces anxiety and helps you manage time effectively.</p>
+                    </div>
+                </div>
+
+                <div class="guide-section">
+                    <h3>📚 Reading Section Strategies</h3>
+                    <h4>Active Reading Techniques:</h4>
+                    <p>• Preview passages quickly before reading in detail</p>
+                    <p>• Identify the main idea and author's purpose</p>
+                    <p>• Take brief notes on key points and transitions</p>
+                    <p>• Pay attention to tone and perspective shifts</p>
+                    
+                    <h4>Question Approach:</h4>
+                    <p>• Read questions before the passage for literature passages</p>
+                    <p>• Look for evidence in the text to support your answers</p>
+                    <p>• Eliminate obviously wrong choices first</p>
+                    <p>• Watch for extreme language in answer choices</p>
+
+                    <div class="tip-box">
+                        <h4>🎯 Strategy Focus</h4>
+                        <p>For evidence-based questions, find the line that supports your answer to the previous question. The evidence should directly support your choice.</p>
+                    </div>
+                </div>
+
+                <div class="guide-section">
+                    <h3>✍️ Writing & Language Section</h3>
+                    <h4>Grammar Rules to Master:</h4>
+                    <p><strong>Subject-Verb Agreement:</strong> Ensure subjects and verbs match in number, even with complex sentence structures.</p>
+                    <p><strong>Pronoun Usage:</strong> Check that pronouns clearly refer to specific nouns and match in number/gender.</p>
+                    <p><strong>Parallel Structure:</strong> Items in lists or comparisons should follow the same grammatical pattern.</p>
+                    <p><strong>Modifier Placement:</strong> Place descriptive words and phrases next to what they modify.</p>
+                    
+                    <h4>Rhetoric and Style:</h4>
+                    <p>• Choose words that match the passage's tone and style</p>
+                    <p>• Look for the most concise, clear expression</p>
+                    <p>• Consider the logical flow and organization of ideas</p>
+                    <p>• Evaluate whether additions improve or detract from the passage</p>
+
+                    <div class="tip-box">
+                        <h4>⚡ Quick Check</h4>
+                        <p>When in doubt, read the sentence aloud in your head. Often, the correct answer will "sound right" because it follows natural speech patterns.</p>
+                    </div>
+                </div>
+
+                <div class="guide-section">
+                    <h3>🔢 Math Section Mastery</h3>
+                    <h4>Key Topics to Review:</h4>
+                    <p><strong>Algebra:</strong> Linear equations, systems of equations, quadratics, and functions</p>
+                    <p><strong>Geometry:</strong> Area, volume, similar triangles, and coordinate geometry</p>
+                    <p><strong>Data Analysis:</strong> Ratios, percentages, probability, and interpreting graphs</p>
+                    <p><strong>Advanced Topics:</strong> Trigonometry basics, complex numbers, and polynomial operations</p>
+                    
+                    <h4>Problem-Solving Strategies:</h4>
+                    <p>• Work backwards from answer choices when possible</p>
+                    <p>• Plug in numbers for variable-heavy problems</p>
+                    <p>• Draw diagrams for geometry problems</p>
+                    <p>• Use process of elimination on multiple choice</p>
+                    <p>• Check your work by substituting answers back into original equations</p>
+
+                    <div class="tip-box">
+                        <h4>🧮 Calculator Strategy</h4>
+                        <p>For the calculator section, don't over-rely on your calculator. Many problems are designed to be solved more efficiently with mental math or algebraic manipulation.</p>
+                    </div>
+                </div>
+
+                <div class="guide-section">
+                    <h3>⏰ Time Management Strategies</h3>
+                    <h4>Section-Specific Timing:</h4>
+                    <p><strong>Reading:</strong> ~13 minutes per passage (including questions)</p>
+                    <p><strong>Writing:</strong> ~8.5 minutes per passage</p>
+                    <p><strong>Math No-Calc:</strong> ~1.25 minutes per question</p>
+                    <p><strong>Math Calculator:</strong> ~1.5 minutes per question</p>
+                    
+                    <h4>Universal Time Tips:</h4>
+                    <p>• Don't spend more than 2 minutes on any single question initially</p>
+                    <p>• Mark difficult questions and return to them if time permits</p>
+                    <p>• Guess strategically - there's no penalty for wrong answers</p>
+                    <p>• Leave 2-3 minutes at the end of each section to review</p>
+
+                    <div class="tip-box">
+                        <h4>⏱️ Pacing Practice</h4>
+                        <p>Practice with a timer regularly. Knowing your natural pace helps you identify when you're spending too much time on difficult questions.</p>
+                    </div>
+                </div>
+
+                <div class="guide-section">
+                    <h3>🎯 Test Day Success</h3>
+                    <h4>Before the Test:</h4>
+                    <p>• Get a full night's sleep (7-8 hours)</p>
+                    <p>• Eat a nutritious breakfast with protein and complex carbs</p>
+                    <p>• Arrive at the test center 30 minutes early</p>
+                    <p>• Bring required materials: photo ID, admission ticket, pencils, calculator</p>
+                    
+                    <h4>During the Test:</h4>
+                    <p>• Stay calm and focused - deep breathing helps with anxiety</p>
+                    <p>• Read all directions carefully, even if you think you know them</p>
+                    <p>• Use break time to stretch, hydrate, and reset mentally</p>
+                    <p>• Trust your preparation - don't second-guess yourself excessively</p>
+
+                    <div class="tip-box">
+                        <h4>🧘 Mindset Matters</h4>
+                        <p>Approach the SAT with confidence. Remember that this test measures specific skills that can be learned and improved with practice, not your intelligence or worth as a person.</p>
+                    </div>
+                </div>
+
+                <div class="guide-section">
+                    <h3>📈 Score Improvement Plan</h3>
+                    <h4>4-Week Study Schedule:</h4>
+                    <p><strong>Week 1:</strong> Take a diagnostic test, identify weak areas, review basic concepts</p>
+                    <p><strong>Week 2:</strong> Focus on your lowest-scoring section, practice targeted exercises</p>
+                    <p><strong>Week 3:</strong> Take another practice test, review mistakes, fine-tune strategies</p>
+                    <p><strong>Week 4:</strong> Light review, focus on test-taking strategies and mental preparation</p>
+                    
+                    <h4>Daily Study Tips:</h4>
+                    <p>• Study in 45-60 minute focused sessions</p>
+                    <p>• Review mistakes immediately after practice</p>
+                    <p>• Keep a log of concepts you find challenging</p>
+                    <p>• Practice a little bit every day rather than cramming</p>
+
+                    <div class="tip-box">
+                        <h4>📊 Track Your Progress</h4>
+                        <p>Keep a score log for practice tests. Seeing improvement over time builds confidence and helps you identify areas that still need work.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let userEmail = '';
+
+        document.getElementById('emailForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            userEmail = document.getElementById('email').value;
+            
+            // Hide email form and show study guide
+            document.getElementById('emailSection').style.display = 'none';
+            document.getElementById('studyGuide').style.display = 'block';
+            
+            // Add smooth scroll to study guide
+            document.getElementById('studyGuide').scrollIntoView({ 
+                behavior: 'smooth' 
+            });
+        });
+
+        function toggleGuideView() {
+            const content = document.getElementById('guideContent');
+            const btn = event.target;
+            
+            if (content.style.display === 'none') {
+                content.style.display = 'block';
+                btn.textContent = '🙈 Hide Guide';
+            } else {
+                content.style.display = 'none';
+                btn.textContent = '👁️ View Online';
+            }
+        }
+
+        function downloadGuide() {
+            // Create a comprehensive study guide content for download
+            const guideContent = `
+SAT STUDY GUIDE
+===============
+
+Here's your complete SAT study guide.
+
+TABLE OF CONTENTS
+=================
+1. SAT Overview & Test Structure
+2. Reading Section Strategies  
+3. Writing & Language Section
+4. Math Section Mastery
+5. Time Management Strategies
+6. Test Day Success
+7. Score Improvement Plan
+
+1. SAT OVERVIEW & TEST STRUCTURE
+================================
+
+The SAT is a standardized test widely used for college admissions. The current format includes:
+
+TEST SECTIONS:
+- Reading (65 minutes): 52 questions testing reading comprehension
+- Writing & Language (35 minutes): 44 questions on grammar and rhetoric  
+- Math (80 minutes total): 58 questions split between calculator and no-calculator sections
+
+SCORING:
+- Total score range: 400-1600
+- Each section (Reading/Writing, Math) scored 200-800
+- No penalty for wrong answers
+
+2. READING SECTION STRATEGIES
+============================
+
+ACTIVE READING TECHNIQUES:
+• Preview passages quickly before reading in detail
+• Identify the main idea and author's purpose
+• Take brief notes on key points and transitions
+• Pay attention to tone and perspective shifts
+
+QUESTION APPROACH:
+• Read questions before the passage for literature passages
+• Look for evidence in the text to support your answers
+• Eliminate obviously wrong choices first
+• Watch for extreme language in answer choices
+
+3. WRITING & LANGUAGE SECTION
+============================
+
+GRAMMAR RULES TO MASTER:
+- Subject-Verb Agreement: Ensure subjects and verbs match in number
+- Pronoun Usage: Check that pronouns clearly refer to specific nouns
+- Parallel Structure: Items in lists should follow the same pattern
+- Modifier Placement: Place descriptive words next to what they modify
+
+RHETORIC AND STYLE:
+• Choose words that match the passage's tone and style
+• Look for the most concise, clear expression
+• Consider the logical flow and organization of ideas
+
+4. MATH SECTION MASTERY
+======================
+
+KEY TOPICS TO REVIEW:
+- Algebra: Linear equations, systems of equations, quadratics
+- Geometry: Area, volume, similar triangles, coordinate geometry
+- Data Analysis: Ratios, percentages, probability, interpreting graphs
+- Advanced Topics: Trigonometry basics, complex numbers
+
+PROBLEM-SOLVING STRATEGIES:
+• Work backwards from answer choices when possible
+• Plug in numbers for variable-heavy problems
+• Draw diagrams for geometry problems
+• Use process of elimination on multiple choice
+
+5. TIME MANAGEMENT STRATEGIES
+============================
+
+SECTION-SPECIFIC TIMING:
+- Reading: ~13 minutes per passage (including questions)
+- Writing: ~8.5 minutes per passage
+- Math No-Calc: ~1.25 minutes per question
+- Math Calculator: ~1.5 minutes per question
+
+UNIVERSAL TIME TIPS:
+• Don't spend more than 2 minutes on any single question initially
+• Mark difficult questions and return to them if time permits
+• Guess strategically - there's no penalty for wrong answers
+• Leave 2-3 minutes at the end of each section to review
+
+6. TEST DAY SUCCESS
+==================
+
+BEFORE THE TEST:
+• Get a full night's sleep (7-8 hours)
+• Eat a nutritious breakfast with protein and complex carbs
+• Arrive at the test center 30 minutes early
+• Bring required materials: photo ID, admission ticket, pencils, calculator
+
+DURING THE TEST:
+• Stay calm and focused - deep breathing helps with anxiety
+• Read all directions carefully
+• Use break time to stretch, hydrate, and reset mentally
+• Trust your preparation
+
+7. SCORE IMPROVEMENT PLAN
+========================
+
+4-WEEK STUDY SCHEDULE:
+Week 1: Take diagnostic test, identify weak areas, review basic concepts
+Week 2: Focus on your lowest-scoring section, practice targeted exercises
+Week 3: Take another practice test, review mistakes, fine-tune strategies
+Week 4: Light review, focus on test-taking strategies and mental preparation
+
+DAILY STUDY TIPS:
+• Study in 45-60 minute focused sessions
+• Review mistakes immediately after practice
+• Keep a log of concepts you find challenging
+• Practice a little bit every day rather than cramming
+
+ADDITIONAL RESOURCES:
+• Khan Academy SAT Practice (free)
+• College Board Official SAT Practice Tests
+• SAT prep books from major publishers
+• Consider a tutor for personalized help with difficult concepts
+
+Remember: The SAT measures specific skills that can be learned and improved with practice. Stay confident, trust your preparation, and do your best!
+
+Good luck with your SAT preparation!
+
+---
+Downloaded from: SAT Study Guide Site
+Email: ${userEmail}
+Generated: ${new Date().toLocaleDateString()}
+            `;
+
+            // Create and download the file
+            const blob = new Blob([guideContent], { type: 'text/plain' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'SAT_Study_Guide.txt';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            window.URL.revokeObjectURL(url);
+            
+            // Show confirmation
+            alert('📚 Your SAT Study Guide has been downloaded! Check your Downloads folder.');
+        }
+
+        // Add some interactive animations
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animate feature cards on scroll
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.feature-card').forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(card);
+            });
+        });
+    </script>
+</body>
+</html>

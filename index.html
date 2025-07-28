@@ -143,7 +143,7 @@
         }
 
         .study-guide {
-            display: none;
+            display: none; /* Hidden by default */
             background: white;
             margin-top: 40px;
             padding: 40px;
@@ -236,12 +236,12 @@
             .hero h1 {
                 font-size: 2.5rem;
             }
-            
+
             .email-form {
                 margin: 0 20px;
                 padding: 30px 20px;
             }
-            
+
             .guide-actions {
                 flex-direction: column;
                 align-items: center;
@@ -257,7 +257,7 @@
         </div>
 
         <div id="emailSection">
-            <form class="email-form" id="emailForm" action="https://formspree.io/f/xqalbalb" method="POST">
+            <form class="email-form" id="emailForm">
                 <h2>Get Your Free Study Guide</h2>
                 <div class="form-group">
                     <label for="email">Email Address</label>
@@ -288,7 +288,7 @@
 
         <div id="studyGuide" class="study-guide">
             <h2>🎓 Complete SAT Study Guide</h2>
-            
+
             <div class="guide-actions">
                 <a href="https://docs.google.com/document/d/1DEnXMfww6sOuVCrCMqQok4eNQ6nqUGo8mHNjdEGRrPM/edit?usp=sharing" target="_blank" class="action-btn download-btn">📄 Open Google Doc</a>
                 <button class="action-btn view-btn" onclick="toggleGuideView()">👁️ View Outline</button>
@@ -302,7 +302,7 @@
                     <p><strong>Reading (65 minutes):</strong> 52 questions testing reading comprehension across literature, history, social studies, and science passages.</p>
                     <p><strong>Writing & Language (35 minutes):</strong> 44 questions focusing on grammar, usage, and rhetoric in context.</p>
                     <p><strong>Math (80 minutes total):</strong> 58 questions split between calculator and no-calculator sections, covering algebra, geometry, and data analysis.</p>
-                    
+
                     <div class="tip-box">
                         <h4>💡 Pro Tip</h4>
                         <p>Familiarize yourself with the test format before test day. Knowing what to expect reduces anxiety and helps you manage time effectively.</p>
@@ -316,7 +316,7 @@
                     <p>• Identify the main idea and author's purpose</p>
                     <p>• Take brief notes on key points and transitions</p>
                     <p>• Pay attention to tone and perspective shifts</p>
-                    
+
                     <h4>Question Approach:</h4>
                     <p>• Read questions before the passage for literature passages</p>
                     <p>• Look for evidence in the text to support your answers</p>
@@ -336,7 +336,7 @@
                     <p><strong>Pronoun Usage:</strong> Check that pronouns clearly refer to specific nouns and match in number/gender.</p>
                     <p><strong>Parallel Structure:</strong> Items in lists or comparisons should follow the same grammatical pattern.</p>
                     <p><strong>Modifier Placement:</strong> Place descriptive words and phrases next to what they modify.</p>
-                    
+
                     <h4>Rhetoric and Style:</h4>
                     <p>• Choose words that match the passage's tone and style</p>
                     <p>• Look for the most concise, clear expression</p>
@@ -356,7 +356,7 @@
                     <p><strong>Geometry:</strong> Area, volume, similar triangles, and coordinate geometry</p>
                     <p><strong>Data Analysis:</strong> Ratios, percentages, probability, and interpreting graphs</p>
                     <p><strong>Advanced Topics:</strong> Trigonometry basics, complex numbers, and polynomial operations</p>
-                    
+
                     <h4>Problem-Solving Strategies:</h4>
                     <p>• Work backwards from answer choices when possible</p>
                     <p>• Plug in numbers for variable-heavy problems</p>
@@ -377,7 +377,7 @@
                     <p><strong>Writing:</strong> ~8.5 minutes per passage</p>
                     <p><strong>Math No-Calc:</strong> ~1.25 minutes per question</p>
                     <p><strong>Math Calculator:</strong> ~1.5 minutes per question</p>
-                    
+
                     <h4>Universal Time Tips:</h4>
                     <p>• Don't spend more than 2 minutes on any single question initially</p>
                     <p>• Mark difficult questions and return to them if time permits</p>
@@ -397,7 +397,7 @@
                     <p>• Eat a nutritious breakfast with protein and complex carbs</p>
                     <p>• Arrive at the test center 30 minutes early</p>
                     <p>• Bring required materials: photo ID, admission ticket, pencils, calculator</p>
-                    
+
                     <h4>During the Test:</h4>
                     <p>• Stay calm and focused - deep breathing helps with anxiety</p>
                     <p>• Read all directions carefully, even if you think you know them</p>
@@ -417,7 +417,7 @@
                     <p><strong>Week 2:</strong> Focus on your lowest-scoring section, practice targeted exercises</p>
                     <p><strong>Week 3:</strong> Take another practice test, review mistakes, fine-tune strategies</p>
                     <p><strong>Week 4:</strong> Light review, focus on test-taking strategies and mental preparation</p>
-                    
+
                     <h4>Daily Study Tips:</h4>
                     <p>• Study in 45-60 minute focused sessions</p>
                     <p>• Review mistakes immediately after practice</p>
@@ -436,31 +436,59 @@
     <script>
         let userEmail = '';
 
-        document.getElementById('emailForm').addEventListener('submit', function(e) {
-            // e.preventDefault();
-            
+        // IMPORTANT: Replace "https://formspree.io/f/xqalbalb" with your actual Formspree endpoint URL
+        const FORMSPREE_ENDPOINT = "https://formspree.io/f/xqalbalb";
+
+        document.getElementById('emailForm').addEventListener('submit', async function(e) {
+            e.preventDefault(); // Prevent the default form submission (which causes the redirect)
+
             userEmail = document.getElementById('email').value;
-            
-            // Hide email form and show study guide
-            document.getElementById('emailSection').style.display = 'none';
-            document.getElementById('studyGuide').style.display = 'block';
-            
-            // Add smooth scroll to study guide
-            document.getElementById('studyGuide').scrollIntoView({ 
-                behavior: 'smooth' 
-            });
+            const form = e.target;
+            const formData = new FormData(form); // Get form data
+
+            try {
+                const response = await fetch(FORMSPREE_ENDPOINT, { // Use the Formspree action URL
+                    method: 'POST', // Formspree typically uses POST
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json' // Essential for Formspree to return JSON and not redirect
+                    }
+                });
+
+                if (response.ok) {
+                    // Form submission was successful
+                    document.getElementById('emailSection').style.display = 'none';
+                    document.getElementById('studyGuide').style.display = 'block';
+
+                    document.getElementById('studyGuide').scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                    // Optionally, clear the form or show a success message
+                    form.reset();
+                    console.log('Form submitted successfully!');
+                } else {
+                    // Form submission failed (e.g., validation error from Formspree)
+                    const errorData = await response.json();
+                    alert('There was an error submitting your email. Please try again. ' + (errorData.errors ? errorData.errors[0].message : ''));
+                    console.error('Form submission failed:', errorData);
+                }
+            } catch (error) {
+                // Network error or other issues
+                alert('Could not submit the form due to a network error. Please check your internet connection and try again.');
+                console.error('Network error:', error);
+            }
         });
 
         function toggleGuideView() {
             const content = document.getElementById('guideContent');
             const btn = event.target;
-            
+
             if (content.style.display === 'none') {
                 content.style.display = 'block';
                 btn.textContent = '🙈 Hide Guide';
             } else {
                 content.style.display = 'none';
-                btn.textContent = '👁️ View Online';
+                btn.textContent = '👁️ View Outline';
             }
         }
 
@@ -475,7 +503,7 @@ Here's your complete SAT study guide.
 TABLE OF CONTENTS
 =================
 1. SAT Overview & Test Structure
-2. Reading Section Strategies  
+2. Reading Section Strategies
 3. Writing & Language Section
 4. Math Section Mastery
 5. Time Management Strategies
@@ -489,7 +517,7 @@ The SAT is a standardized test widely used for college admissions. The current f
 
 TEST SECTIONS:
 - Reading (65 minutes): 52 questions testing reading comprehension
-- Writing & Language (35 minutes): 44 questions on grammar and rhetoric  
+- Writing & Language (35 minutes): 44 questions on grammar and rhetoric
 - Math (80 minutes total): 58 questions split between calculator and no-calculator sections
 
 SCORING:
@@ -612,7 +640,7 @@ Generated: ${new Date().toLocaleDateString()}
             a.click();
             document.body.removeChild(a);
             window.URL.revokeObjectURL(url);
-            
+
             // Show confirmation
             alert('📚 Your SAT Study Guide has been downloaded! Check your Downloads folder.');
         }
